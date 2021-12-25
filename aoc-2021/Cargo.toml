@@ -4,5 +4,9 @@ version = "0.1.0"
 edition = "2018"
 
 [[bin]]
+name = "01-sonar-sweep"
+path = "src/01-sonar-sweep.rs"
+
+[[bin]]
 name = "25-sea-cucumber"
 path = "src/25-sea-cucumber.rs"
