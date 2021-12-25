@@ -1,0 +1,8 @@
+[package]
+name = "advent-of-code-2021"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "25-sea-cucumber"
+path = "src/25-sea-cucumber.rs"
