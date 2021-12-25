@@ -1,15 +1,8 @@
 use std::fmt::Display;
 
-#[derive(Clone, Copy, PartialEq, Debug)]
-enum Cell {
-    East,
-    South,
-    None,
-}
-
 struct Map {
     cols: usize,
-    data: Vec<Cell>,
+    data: Vec<char>,
 }
 
 impl Map {
@@ -17,18 +10,15 @@ impl Map {
         let cols = input.lines().next().unwrap().len();
         let data = input
             .chars()
-            .map(|c| match c {
-                '>' => Some(Cell::East),
-                'v' => Some(Cell::South),
-                '.' => Some(Cell::None),
-                _ => None,
+            .filter(|c| match c {
+                '>' | 'v' | '.' => true,
+                _ => false,
             })
-            .filter_map(|o| o)
             .collect::<Vec<_>>();
 
         Self { cols, data }
     }
-    
+
     fn pos_to_east(&self, pos: usize) -> usize {
         let x = pos % self.cols;
         if x + 1 < self.cols {
@@ -47,7 +37,7 @@ impl Map {
         }
     }
 
-    fn simulate(&mut self, filter: Cell) -> bool {
+    fn simulate(&mut self, filter: char) -> bool {
         let mut next = self.data.clone();
         let mut moved = false;
 
@@ -57,13 +47,13 @@ impl Map {
             }
 
             let move_pos = match filter {
-                Cell::East => self.pos_to_east(pos),
-                Cell::South => self.pos_to_south(pos),
+                '>' => self.pos_to_east(pos),
+                'v' => self.pos_to_south(pos),
                 _ => unreachable!(),
             };
 
-            if self.data[move_pos] == Cell::None {
-                next[pos] = Cell::None;
+            if self.data[move_pos] == '.' {
+                next[pos] = '.';
                 next[move_pos] = filter;
                 moved = true;
             }
@@ -75,8 +65,8 @@ impl Map {
 
     pub fn step(&mut self) -> bool {
         let mut moved = false;
-        moved |= self.simulate(Cell::East);
-        moved |= self.simulate(Cell::South);
+        moved |= self.simulate('>');
+        moved |= self.simulate('v');
         moved
     }
 
@@ -92,11 +82,7 @@ impl Map {
 impl Display for Map {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for pos in 0..self.data.len() {
-            write!(f, "{}", match self.data[pos] {
-                Cell::East => ">",
-                Cell::South => "v",
-                Cell::None => ".",
-            })?;
+            write!(f, "{}", self.data[pos])?;
             if (pos + 1) % self.cols == 0 {
                 write!(f, "\n")?;
             }
