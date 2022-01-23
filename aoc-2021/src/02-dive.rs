@@ -1,4 +1,4 @@
-fn dive(input: &str) -> u32 {
+fn dive_1(input: &str) -> u32 {
     let mut dist = 0;
     let mut depth = 0;
 
@@ -16,9 +16,32 @@ fn dive(input: &str) -> u32 {
     dist * depth
 }
 
+fn dive_2(input: &str) -> u32 {
+    let mut dist = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+
+    input.lines()
+        .map(|line| line.split_once(' '))
+        .filter_map(std::convert::identity)
+        .map(|(cmd, num)| (cmd, num.parse::<u32>().unwrap()))
+        .for_each(|(cmd, num)| match cmd {
+            "forward" => {
+                dist += num;
+                depth += num * aim;
+            },
+            "up" => aim -= num,
+            "down" => aim += num,
+            _ => unimplemented!(),
+        });
+
+    dist * depth
+}
+
 fn main() {
     let input = include_str!("../res/02-input.txt");
-    println!("{}", dive(input));
+    println!("{}", dive_1(input));
+    println!("{}", dive_2(input));
 }
 
 #[test]
@@ -29,5 +52,6 @@ forward 8
 up 3
 down 8
 forward 2";
-    assert_eq!(dive(input), 150);
+    assert_eq!(dive_1(input), 150);
+    assert_eq!(dive_2(input), 900);
 }
