@@ -8,5 +8,9 @@ name = "01-sonar-sweep"
 path = "src/01-sonar-sweep.rs"
 
 [[bin]]
+name = "02-dive"
+path = "src/02-dive.rs"
+
+[[bin]]
 name = "25-sea-cucumber"
 path = "src/25-sea-cucumber.rs"
