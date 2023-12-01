@@ -2,7 +2,8 @@ fn dive_1(input: &str) -> u32 {
     let mut dist = 0;
     let mut depth = 0;
 
-    input.lines()
+    input
+        .lines()
         .map(|line| line.split_once(' '))
         .filter_map(std::convert::identity)
         .map(|(cmd, num)| (cmd, num.parse::<u32>().unwrap()))
@@ -21,7 +22,8 @@ fn dive_2(input: &str) -> u32 {
     let mut depth = 0;
     let mut aim = 0;
 
-    input.lines()
+    input
+        .lines()
         .map(|line| line.split_once(' '))
         .filter_map(std::convert::identity)
         .map(|(cmd, num)| (cmd, num.parse::<u32>().unwrap()))
@@ -29,7 +31,7 @@ fn dive_2(input: &str) -> u32 {
             "forward" => {
                 dist += num;
                 depth += num * aim;
-            },
+            }
             "up" => aim -= num,
             "down" => aim += num,
             _ => unimplemented!(),
