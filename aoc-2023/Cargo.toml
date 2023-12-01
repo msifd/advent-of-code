@@ -6,3 +6,6 @@ edition = "2021"
 [[bin]]
 name = "01-trebuchet"
 path = "src/01-trebuchet.rs"
+
+[dependencies]
+regex = "1.10.2"

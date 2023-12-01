@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use regex::Regex;
 
 fn calibrate1(input: &str) -> u32 {
     input
@@ -6,7 +6,7 @@ fn calibrate1(input: &str) -> u32 {
         .map(|l: &str| {
             let mut digits = l
                 .chars()
-                .filter(|c| char::is_numeric(*c))
+                .filter(char::is_ascii_digit)
                 .map(|c| c.to_digit(10).unwrap());
 
             let first = digits.next().unwrap();
@@ -18,51 +18,44 @@ fn calibrate1(input: &str) -> u32 {
 
 fn calibrate2(input: &str) -> u32 {
     let match_alpha = |s| match s {
-        "1" => Some(1),
-        "2" => Some(2),
-        "3" => Some(3),
-        "4" => Some(4),
-        "5" => Some(5),
-        "6" => Some(6),
-        "7" => Some(7),
-        "8" => Some(8),
-        "9" => Some(9),
-        "one" => Some(1),
-        "two" => Some(2),
-        "three" => Some(3),
-        "four" => Some(4),
-        "five" => Some(5),
-        "six" => Some(6),
-        "seven" => Some(7),
-        "eight" => Some(8),
-        "nine" => Some(9),
-        _ => None,
+        "1" => 1,
+        "2" => 2,
+        "3" => 3,
+        "4" => 4,
+        "5" => 5,
+        "6" => 6,
+        "7" => 7,
+        "8" => 8,
+        "9" => 9,
+        "one" => 1,
+        "two" => 2,
+        "three" => 3,
+        "four" => 4,
+        "five" => 5,
+        "six" => 6,
+        "seven" => 7,
+        "eight" => 8,
+        "nine" => 9,
+        _ => unreachable!(),
     };
+
+    let first_re = Regex::new(r"(\d|one|two|three|four|five|six|seven|eight|nine)").unwrap();
+    let last_re = Regex::new(r"^.*(\d|one|two|three|four|five|six|seven|eight|nine)").unwrap();
 
     input
         .lines()
         .map(|line| {
-            let first = (0..line.len())
-                .fold(None, |n| );
-
+            let first = first_re
+                .captures(line)
+                .map(|c| match_alpha(c.get(1).unwrap().as_str()))
+                .unwrap();
+            let last = last_re
+                .captures(line)
+                .map(|c| match_alpha(c.get(1).unwrap().as_str()))
+                .unwrap();
+            first * 10 + last
         })
-        .for_each(|v| println!("- {v:?}"));
-
-    0
-    // input
-    //     .lines()
-    //     .map(|l: &str| {
-    //         let mut digits = l
-    //             .chars()
-    //             .filter(|c| char::is_numeric(*c))
-    //             .map(|c| c.to_digit(10).unwrap());
-
-    //         let first = digits.next().unwrap();
-    //         let last = digits.last().unwrap_or(first);
-    //         first * 10 + last
-    //     })
-    //     // .inspect(|n| println!("- {n}"))
-    //     .sum()
+        .sum()
 }
 
 fn main() {
