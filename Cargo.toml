@@ -1,5 +1,3 @@
 [workspace]
-
-members = [
-    "aoc-2021",
-]
+resolver = "2"
+members = ["aoc-2021", "aoc-2023"]
