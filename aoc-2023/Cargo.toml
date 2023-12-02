@@ -7,5 +7,9 @@ edition = "2021"
 name = "01-trebuchet"
 path = "src/01-trebuchet.rs"
 
+[[bin]]
+name = "02-cubes"
+path = "src/02-cubes.rs"
+
 [dependencies]
 regex = "1.10.2"
