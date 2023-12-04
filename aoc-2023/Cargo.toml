@@ -11,5 +11,9 @@ path = "src/01-trebuchet.rs"
 name = "02-cubes"
 path = "src/02-cubes.rs"
 
+[[bin]]
+name = "04-scratchcards"
+path = "src/04-scratchcards.rs"
+
 [dependencies]
 regex = "1.10.2"
