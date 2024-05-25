@@ -1,0 +1,7 @@
+[package]
+name = "aoc-2017"
+version = "0.1.0"
+authors = ["msifeed <remsifeed@gmail.com>"]
+edition = "2015"
+
+[dependencies]
