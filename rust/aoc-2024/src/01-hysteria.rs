@@ -24,9 +24,18 @@ fn part1(input: &str) -> u32 {
         .sum()
 }
 
+fn part2(input: &str) -> u32 {
+    let (va, vb) = parse(input);
+
+    va.into_iter()
+        .map(|a| a * vb.iter().filter(|&&b| a == b).count() as u32)
+        .sum()
+}
+
 fn main() {
     let input = input_loader::load();
     println!("part 1: {}", part1(&input));
+    println!("part 2: {}", part2(&input));
 }
 
 #[test]
@@ -38,4 +47,15 @@ fn test1() {
 3   9
 3   3"#;
     assert_eq!(part1(input), 11);
+}
+
+#[test]
+fn test2() {
+    let input = r#"3   4
+4   3
+2   5
+1   3
+3   9
+3   3"#;
+    assert_eq!(part2(input), 31);
 }
