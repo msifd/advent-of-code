@@ -1,0 +1,12 @@
+[package]
+name = "aoc-2024"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "01-hysteria"
+path = "src/01-hysteria.rs"
+
+
+# [dependencies]
+# regex = "1.10.2"
