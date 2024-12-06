@@ -33,7 +33,7 @@ fn part2(input: &str) -> u32 {
 }
 
 fn main() {
-    let input = input_loader::load();
+    let input = input_loader::load(1);
     println!("part 1: {}", part1(&input));
     println!("part 2: {}", part2(&input));
 }

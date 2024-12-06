@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Clojure",
+			"path": "clojure"
+		},
+		{
+			"name": "Rust 2024",
+			"path": "rust/aoc-2024"
+		}
+	],
+	"settings": {}
+}
