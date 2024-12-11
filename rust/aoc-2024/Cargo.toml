@@ -15,6 +15,11 @@ path = "src/02-reports.rs"
 name = "03-mull"
 path = "src/03-mull.rs"
 
+[[bin]]
+name = "04-ceres"
+path = "src/04-ceres.rs"
+
 [dependencies]
+itertools = "0.13.0"
 regex = "1.11.1"
 
