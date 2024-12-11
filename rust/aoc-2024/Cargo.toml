@@ -11,3 +11,10 @@ path = "src/01-hysteria.rs"
 name = "02-reports"
 path = "src/02-reports.rs"
 
+[[bin]]
+name = "03-mull"
+path = "src/03-mull.rs"
+
+[dependencies]
+regex = "1.11.1"
+
