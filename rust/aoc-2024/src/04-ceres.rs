@@ -90,6 +90,7 @@ fn main() {
     println!("part 2: {}", part2(&input));
 }
 
+#[cfg(test)]
 const TEST_INPUT: &str = r#"MMMSXXMASM
 MSAMXMSMSA
 AMXSXMAAMM
